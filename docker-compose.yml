@@ -1,0 +1,17 @@
+---
+version: '3.7'
+services:
+  local-db:
+    image: postgres:15.0-alpine
+    container_name: crypto-local-db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

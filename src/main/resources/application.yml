@@ -1,0 +1,43 @@
+server:
+  servlet:
+    context-path: /api
+
+twitter:
+  api-root: https://api.twitter.com/2/
+  client-token: ${TWITTER_BEARER_TOKEN}
+  client-key: ${TWITTER_CLIENT_KEY}
+  client-secret: ${TWITTER_CLIENT_SECRET}
+  callback-url: http://www.example.com/callback
+  influencers-list: mdivosc,CryptoMichNL,iLyasioo,OfficialTravlad,piproject635,Akinsoncrypto,CryptoValueBot,AboMost0568888
+  tweets-max-results: 60
+
+openai:
+  api-root: https://api.openai.com
+  client-token: ${OPENAI_BEARER_TOKEN}
+  model: text-davinci-003
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+
+spring:
+  #In order to execute swagger
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+crypto:
+  app:
+    schedule:
+      twitter-fixed-delay-expression: PT1S
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
