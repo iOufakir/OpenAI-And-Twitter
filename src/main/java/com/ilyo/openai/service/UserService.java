@@ -15,17 +15,15 @@ public class UserService {
 
     private final OpenAIService openAIService;
 
-    public void launchAutoTweet(){
-        //TODO: remove this later
-        twitterService.publishTweet("Hello ilyas");
-
+    public void launchAutoTweet() {
         var tweets = twitterService.getLatestTweets();
 
-        if(Objects.nonNull(tweets) && Objects.nonNull(tweets.data())){
-            if(!tweets.data().isEmpty()){
-                var targetTweet =  tweets.data().get(0);
+        if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
+            if (!tweets.data().isEmpty()) {
+                var targetTweet = tweets.data().get(0);
+                log.info("Request OpenAI to generate a new tweet based on: {}", targetTweet.text());
                 var newTweet = openAIService.generateNewTweet(targetTweet.text());
-                    twitterService.publishTweet(newTweet);
+                twitterService.publishTweet(newTweet);
             }
         }
     }

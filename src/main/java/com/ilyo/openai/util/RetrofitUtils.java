@@ -12,7 +12,7 @@ public class RetrofitUtils {
 
     public static <T> T executeCall(Call<T> apiCall) {
         try {
-            log.info("REST {} request {}", apiCall.request().method(), apiCall.request().url());
+            log.debug("REST {} request {}", apiCall.request().method(), apiCall.request().url());
             var connectionsResponse = apiCall.execute();
             return connectionsResponse.body();
         } catch (Exception ex) {

@@ -69,7 +69,6 @@ public class BaseTwitterService implements TwitterService {
 
 
     private AccessTokenResponse getAccessToken(final AccessTokenRequest request) {
-        System.out.println(AuthorizationUtils.createBasicAuthorizationHeader(twitterConfig.clientKey(), twitterConfig.clientSecret()));
         var call = twitterApiClient.getAccessToken(
                 AuthorizationUtils.createBasicAuthorizationHeader(twitterConfig.clientKey(), twitterConfig.clientSecret()),
                 request.code(), request.grantType(), twitterConfig.clientKey(), request.codeVerifier(), twitterConfig.callbackUrl());

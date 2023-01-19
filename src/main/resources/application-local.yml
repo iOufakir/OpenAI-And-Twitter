@@ -1,5 +1,5 @@
 twitter:
-  influencers-list: elonmusk,iLyasioo
+  influencers-list: elonmusk
   tweets-max-results: 10
 
 springfox:
@@ -9,4 +9,4 @@ springfox:
 crypto:
   app:
     schedule:
-      twitter-fixed-delay-expression: 0/20 * * * * *
+      twitter-fixed-delay-expression: 0 22 11,17,18 * * *
