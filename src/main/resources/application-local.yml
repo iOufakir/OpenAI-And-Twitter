@@ -6,7 +6,6 @@ springfox:
   documentation:
     enabled: true
 
-crypto:
-  app:
-    schedule:
-      twitter-fixed-delay-expression: 0 22 11,17,18 * * *
+app:
+  schedule:
+    twitter-fixed-delay-expression: 0 0 11,18 * * *

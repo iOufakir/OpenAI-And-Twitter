@@ -1,17 +1,25 @@
 ---
 version: '3.7'
 services:
-  local-db:
-    image: postgres:15.0-alpine
-    container_name: crypto-local-db
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
+  firefox:
+    image: selenium/standalone-firefox:latest
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+    environment:
+      - TZ=UTC
 
-volumes:
-  db-data:
+  openai-with-twitter-backend:
+    image: 'spring/openai-with-twitter-backend'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openai-with-twitter-backend
+    ports:
+      - 8080:8080
+    environment:
+      - TWITTER_BEARER_TOKEN=AAAAAAAAAAAAAAAAAAAAAN8ciQEAAAAA7i9tiijl4fry1WkTu%2Fw1k2O0s%2B4%3DOnCPXFsX91G6xt8AinJHmYdTLnOEYs521H73XKYCTjNlyKacjx
+      - OPENAI_BEARER_TOKEN=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
+      - TWITTER_CLIENT_KEY=dVpUeFljYWpKOTN6S0hpbE5TWFc6MTpjaQ
+      - TWITTER_CLIENT_SECRET=__Q87oseG17MO0Ex5pLpqUvYLdZLBx9mZ-DyIAxJaKY85dm80W

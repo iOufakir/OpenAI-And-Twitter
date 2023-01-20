@@ -15,7 +15,7 @@ public class AppScheduler {
 
     private final UserService userService;
 
-    @Scheduled(cron = "${crypto.app.schedule.twitter-fixed-delay-expression}")
+    @Scheduled(cron = "${app.schedule.twitter-fixed-delay-expression}")
     public void startAppScheduler() {
         log.info("[Schedule] Current execution time: {}", LocalDateTime.now());
         userService.launchAutoTweet();

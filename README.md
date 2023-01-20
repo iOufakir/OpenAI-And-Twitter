@@ -21,8 +21,6 @@ TWITTER_BEARER_TOKEN=YOUR_TWITTER_APP_BEARER_TOKEN
 OPENAI_BEARER_TOKEN=YOUR_OPENAI_BEARER_TOKEN
 ```
 
-In order to get the above credentials, you should create a **Twitter App**, and a new **API** in KuCoin.
-
 # Build and Test
 
 To build and run the application using Docker, the following needs to be done:

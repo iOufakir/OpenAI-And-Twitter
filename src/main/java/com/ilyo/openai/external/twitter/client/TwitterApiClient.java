@@ -1,10 +1,8 @@
 package com.ilyo.openai.external.twitter.client;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ilyo.openai.external.twitter.dto.request.AccessTokenRequest;
+import com.ilyo.openai.external.twitter.dto.request.TweetCreationRequest;
 import com.ilyo.openai.external.twitter.dto.response.AccessTokenResponse;
 import com.ilyo.openai.external.twitter.dto.response.LatestTweetsResponse;
-import com.ilyo.openai.external.twitter.dto.request.TweetCreationRequest;
 import com.ilyo.openai.external.twitter.dto.response.TweetCreationResponse;
 import retrofit2.Call;
 import retrofit2.http.*;

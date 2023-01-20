@@ -1,10 +1,8 @@
 package com.ilyo.openai.external.twitter.client;
 
 import com.ilyo.openai.external.twitter.config.TwitterConfig;
-import com.ilyo.openai.util.AuthorizationUtils;
 import com.ilyo.openai.util.ObjectMapperUtils;
 import lombok.AllArgsConstructor;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

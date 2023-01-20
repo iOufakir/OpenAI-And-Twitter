@@ -26,10 +26,9 @@ spring:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
 
-crypto:
-  app:
-    schedule:
-      twitter-fixed-delay-expression: PT1S
+app:
+  schedule:
+    twitter-fixed-delay-expression: 0 0 11,18 * * *
 
 management:
   endpoint:

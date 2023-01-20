@@ -9,6 +9,7 @@ local/kucoin-java-sdk/
 !**/src/test/**/target/
 .DS_Store
 .idea
+docker-compose.yml
 
 # Log file
 *.log

@@ -1,8 +1,13 @@
 FROM eclipse-temurin:17-jre
 WORKDIR /opt
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} ./crypto-backend.jar
-ENTRYPOINT ["java","-jar","crypto-backend.jar"]
+COPY ${JAR_FILE} ./openai-with-twitter-backend.jar
+
+ARG DRIVER_LOCAL_LOCATION=local/geckodriver
+COPY ${DRIVER_LOCAL_LOCATION} ./geckodriver
+RUN chmod 755 ./geckodriver
+
+ENTRYPOINT ["java","-jar","openai-with-twitter-backend.jar"]
 
 # ------- Another version with maven -------
 

@@ -12,8 +12,8 @@
     <groupId>com.ilyo</groupId>
     <artifactId>openai</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>openai-and-twitter</name>
-    <description>openai-and-twitter</description>
+    <name>openai-with-twitter</name>
+    <description>OpenAI with Twitter Backend</description>
 
     <properties>
         <java.version>17</java.version>
