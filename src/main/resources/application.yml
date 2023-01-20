@@ -2,6 +2,10 @@ server:
   servlet:
     context-path: /api
 
+app:
+  schedule:
+    twitter-fixed-delay-expression: 0 15 09,11,18 * * *
+
 twitter:
   api-root: https://api.twitter.com/2/
   client-token: ${TWITTER_BEARER_TOKEN}
@@ -25,10 +29,6 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
-app:
-  schedule:
-    twitter-fixed-delay-expression: 0 0 11,18 * * *
 
 management:
   endpoint:

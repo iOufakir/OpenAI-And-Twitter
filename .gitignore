@@ -10,6 +10,7 @@ local/kucoin-java-sdk/
 .DS_Store
 .idea
 docker-compose.yml
+docker-compose*
 
 # Log file
 *.log

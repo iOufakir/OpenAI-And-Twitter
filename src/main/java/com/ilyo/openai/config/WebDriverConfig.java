@@ -4,13 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.net.NetworkUtils;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.security.SecureRandom;
 
 @Configuration
@@ -31,7 +34,7 @@ public class WebDriverConfig {
     }
 
     @Bean
-    public WebDriver remoteWebDriver() throws MalformedURLException {
+    public WebDriver remoteWebDriver() throws MalformedURLException, UnknownHostException {
         var options = new FirefoxOptions();
         options.setHeadless(true);
         options.addArguments("--start-maximized");
@@ -42,8 +45,7 @@ public class WebDriverConfig {
         options.setCapability("platformName", "LINUX");
         options.setCapability("unhandledPromptBehavior", "dismiss");
 
-        URL remoteUrl = new URL("http://localhost:4444");
-        return new RemoteWebDriver(remoteUrl, options);
+        return new RemoteWebDriver(new URL("http://firefox_service:4444/wd/hub"), options);
     }
 
     @Bean
