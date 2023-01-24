@@ -1,11 +1,7 @@
-twitter:
-  influencers-list: elonmusk
-  tweets-max-results: 10
+app:
+  schedule:
+    twitter-fixed-delay-expression: 0 0 11,16,18 * * *
 
 springfox:
   documentation:
     enabled: true
-
-app:
-  schedule:
-    twitter-fixed-delay-expression: 0 0 11,18 * * *

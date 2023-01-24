@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.Instant;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 import static com.ilyo.openai.util.Constants.TWITTER_SEARCH_QUERY;
@@ -36,14 +35,17 @@ public class BaseTwitterService implements TwitterService {
 
     @Override
     public LatestTweetsResponse getLatestTweets() {
+        var startTime = Instant.now().minusSeconds(LATEST_TWEETS_SECONDS_TO_SUBTRACT)
+                .atZone(ZoneOffset.UTC) // Twitter use UTC
+                .toInstant();
+
+        log.info("Get Latest Tweets using {}", startTime);
+
         var call = twitterApiClient
                 .getPublicLatestTweets(AuthorizationUtils.createBearerToken(twitterConfig.clientToken()), TWITTER_SEARCH_QUERY.formatted(TWITTER_TEXT_SEARCH_QUERY,
                                 getInfluencersQuery(twitterConfig.influencersList().split(","))),
                         twitterConfig.tweetsMaxResults(),
-                        Instant.now().minusSeconds(LATEST_TWEETS_SECONDS_TO_SUBTRACT)
-                                .atZone(ZoneId.systemDefault())
-                                .withZoneSameInstant(ZoneOffset.UTC)
-                                .toInstant());
+                        startTime);
         return RetrofitUtils.executeCall(call);
     }
 
@@ -63,7 +65,7 @@ public class BaseTwitterService implements TwitterService {
         var accessTokenResponse = getAccessToken(new AccessTokenRequest(code,
                 "authorization_code", "challenge"));
 
-        log.info("Getting OAuth2 Access Token: {}", accessTokenResponse.accessToken());
+        log.debug("Getting OAuth2 Access Token: {}", accessTokenResponse.accessToken());
         return AuthorizationUtils.createBearerToken(accessTokenResponse.accessToken());
     }
 

@@ -1,10 +1,11 @@
 server:
   servlet:
     context-path: /api
+  port: 8082
 
 app:
   schedule:
-    twitter-fixed-delay-expression: 0 15 09,11,18 * * *
+    twitter-fixed-delay-expression: 0 0 11,15,18 * * *
 
 twitter:
   api-root: https://api.twitter.com/2/
@@ -12,8 +13,8 @@ twitter:
   client-key: ${TWITTER_CLIENT_KEY}
   client-secret: ${TWITTER_CLIENT_SECRET}
   callback-url: http://www.example.com/callback
-  influencers-list: mdivosc,CryptoMichNL,iLyasioo,OfficialTravlad,piproject635,Akinsoncrypto,CryptoValueBot,AboMost0568888
-  tweets-max-results: 60
+  influencers-list: elonmusk,garyvee,tonyvalormusic,LIVEpositivity,InspiringThinkn,BrendonBurchard
+  tweets-max-results: 10
 
 openai:
   api-root: https://api.openai.com

@@ -17,8 +17,10 @@ In order to run the application locally, the following needs to be done:
 - You will need the following environment variables :
 
 ```
-TWITTER_BEARER_TOKEN=YOUR_TWITTER_APP_BEARER_TOKEN
-OPENAI_BEARER_TOKEN=YOUR_OPENAI_BEARER_TOKEN
+- TWITTER_BEARER_TOKEN=
+- OPENAI_BEARER_TOKEN=
+- TWITTER_CLIENT_KEY=
+- TWITTER_CLIENT_SECRET=
 ```
 
 # Build and Test
@@ -26,7 +28,10 @@ OPENAI_BEARER_TOKEN=YOUR_OPENAI_BEARER_TOKEN
 To build and run the application using Docker, the following needs to be done:
 - First check the influence's list in the `application.yml` file, make sure it's correct.
 - Open a terminal, and make sure you are in the parent project where the Dockerfile located.
-...
+- Run this command, it will do everything in your behalf:
+
+`./start_production.sh`
+
 
 ## Swagger
 

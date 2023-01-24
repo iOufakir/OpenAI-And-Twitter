@@ -30,7 +30,7 @@ public class WebSecurityConfigurer {
 
         //TODO : Increase security for monitoring actuator
         http.authorizeHttpRequests()
-                .requestMatchers( "/actuator/prometheus")
+                .requestMatchers("/actuator/prometheus")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

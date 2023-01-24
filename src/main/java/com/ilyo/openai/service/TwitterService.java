@@ -28,7 +28,7 @@ public interface TwitterService {
 
     @SneakyThrows
     default String buildOAuth2AuthorizeUrl(final String clientId, final String redirectUrl,
-                                           final String scope, final String state){
+                                           final String scope, final String state) {
         var authorizeUrl = new StringBuilder("https://twitter.com/i/oauth2/authorize?");
 
         authorizeUrl.append("code_challenge=%s".formatted("challenge"))

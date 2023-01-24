@@ -1,4 +1,3 @@
-
 package com.ilyo.openai.mapper;
 
 import com.ilyo.openai.dto.TweetResponse;

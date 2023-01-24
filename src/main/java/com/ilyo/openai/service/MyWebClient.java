@@ -19,7 +19,7 @@ public class MyWebClient {
     private final WebDriver webDriver;
 
     @SneakyThrows
-    public String extractTwitterOAuth2Code(final String url, final String callbackUrl){
+    public String extractTwitterOAuth2Code(final String url, final String callbackUrl) {
         webDriver.get(url);
 
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(12));

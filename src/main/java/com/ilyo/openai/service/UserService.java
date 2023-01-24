@@ -21,9 +21,13 @@ public class UserService {
         if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
             if (!tweets.data().isEmpty()) {
                 var targetTweet = tweets.data().get(0);
-                log.info("Request OpenAI to generate a new tweet based on: {}", targetTweet.text());
+                log.info("[OpenAI] Request to generate a new tweet based on: {} - FROM: @{}", targetTweet.text(),
+                        TwitterService.getUser(tweets.includes().users(), targetTweet.authorId()));
                 var newTweet = openAIService.generateNewTweet(targetTweet.text());
-                twitterService.publishTweet(newTweet);
+                var creationResponse = twitterService.publishTweet(newTweet);
+                log.info("[OpenAI] Response: {}", creationResponse.data().text());
+            } else {
+                log.info("Couldn't get any tweets!");
             }
         }
     }

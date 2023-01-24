@@ -21,5 +21,4 @@ public class AppScheduler {
         userService.launchAutoTweet();
     }
 
-
 }
