@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.time.Duration;
+
 @Configuration
 @AllArgsConstructor
 public class OpenAIClientConfig {
@@ -21,6 +23,7 @@ public class OpenAIClientConfig {
     public OpenAIClient openAIClient() {
         var httpClient = new OkHttpClient().newBuilder()
                 .addInterceptor(getInterceptor())
+                .readTimeout(Duration.ofMinutes(1))
                 .build();
 
         return new Retrofit.Builder()

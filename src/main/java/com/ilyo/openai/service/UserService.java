@@ -25,7 +25,7 @@ public class UserService {
                         TwitterService.getUser(tweets.includes().users(), targetTweet.authorId()));
                 var newTweet = openAIService.generateNewTweet(targetTweet.text());
                 var creationResponse = twitterService.publishTweet(newTweet);
-                log.info("[OpenAI] Response: {}", creationResponse.data().text());
+                log.info("[OpenAI] Response: {}", creationResponse.data());
             } else {
                 log.info("Couldn't get any tweets!");
             }
