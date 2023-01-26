@@ -26,6 +26,8 @@ public interface TwitterService {
 
     TweetCreationResponse publishTweet(final String tweetText);
 
+    TweetCreationResponse replyToTweet(final String text, final String targetTweetId);
+
     @SneakyThrows
     default String buildOAuth2AuthorizeUrl(final String clientId, final String redirectUrl,
                                            final String scope, final String state) {

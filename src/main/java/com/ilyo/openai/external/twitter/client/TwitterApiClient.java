@@ -1,6 +1,8 @@
 package com.ilyo.openai.external.twitter.client;
 
+import com.ilyo.openai.external.twitter.dto.TweetReply;
 import com.ilyo.openai.external.twitter.dto.request.TweetCreationRequest;
+import com.ilyo.openai.external.twitter.dto.request.TweetReplyRequest;
 import com.ilyo.openai.external.twitter.dto.response.AccessTokenResponse;
 import com.ilyo.openai.external.twitter.dto.response.LatestTweetsResponse;
 import com.ilyo.openai.external.twitter.dto.response.TweetCreationResponse;
@@ -29,4 +31,8 @@ public interface TwitterApiClient {
     @POST("tweets")
     Call<TweetCreationResponse> createTweet(@Header("Authorization") String bearerToken,
                                             @Body TweetCreationRequest tweetCreationRequest);
+
+    @POST("tweets")
+    Call<TweetCreationResponse> reply(@Header("Authorization") String bearerToken,
+                                            @Body TweetReplyRequest tweetReplyRequest);
 }

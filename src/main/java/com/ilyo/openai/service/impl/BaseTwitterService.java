@@ -2,8 +2,10 @@ package com.ilyo.openai.service.impl;
 
 import com.ilyo.openai.external.twitter.client.TwitterApiClient;
 import com.ilyo.openai.external.twitter.config.TwitterConfig;
+import com.ilyo.openai.external.twitter.dto.TweetReply;
 import com.ilyo.openai.external.twitter.dto.request.AccessTokenRequest;
 import com.ilyo.openai.external.twitter.dto.request.TweetCreationRequest;
+import com.ilyo.openai.external.twitter.dto.request.TweetReplyRequest;
 import com.ilyo.openai.external.twitter.dto.response.AccessTokenResponse;
 import com.ilyo.openai.external.twitter.dto.response.LatestTweetsResponse;
 import com.ilyo.openai.external.twitter.dto.response.TweetCreationResponse;
@@ -53,6 +55,13 @@ public class BaseTwitterService implements TwitterService {
     public TweetCreationResponse publishTweet(final String tweetText) {
         var oAuth2BearerToken = getOAuth2Token();
         var call = twitterApiClient.createTweet(oAuth2BearerToken, new TweetCreationRequest(tweetText));
+        return RetrofitUtils.executeCall(call);
+    }
+
+    @Override
+    public TweetCreationResponse replyToTweet(final String text, final String targetTweetId) {
+        var oAuth2BearerToken = getOAuth2Token();
+        var call = twitterApiClient.reply(oAuth2BearerToken, new TweetReplyRequest(text, new TweetReply(targetTweetId)));
         return RetrofitUtils.executeCall(call);
     }
 
