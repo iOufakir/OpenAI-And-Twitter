@@ -1,7 +1,6 @@
 package com.ilyo.openai.service;
 
 import com.ilyo.openai.external.twitter.dto.Tweet;
-import com.ilyo.openai.util.Constants;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -9,8 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 import static com.ilyo.openai.service.TwitterService.getUser;
-import static com.ilyo.openai.util.Constants.OPENAI_PROMPT_REPLY_TO_TWEET;
-import static com.ilyo.openai.util.Constants.OPENAI_PROMPT_WRITE_TWEET;
+import static com.ilyo.openai.util.Constants.*;
 
 @Service
 @AllArgsConstructor
@@ -37,10 +35,14 @@ public class UserService {
         }
     }
 
+    public boolean isHarmfulText(final String text) {
+        return openAIService.isTextNegativeOrHarmful(OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL.formatted(text, OPENAI_PROMPT_PREFIX));
+    }
 
-    private void publishTweetAndReply(final String tweet, final Tweet originalTweet){
+
+    private void publishTweetAndReply(final String tweet, final Tweet originalTweet) {
         var creationResponse = twitterService.publishTweet(tweet).data();
-        if(creationResponse != null){
+        if (creationResponse != null) {
             var generatedReply = openAIService.generateNewTweet(OPENAI_PROMPT_REPLY_TO_TWEET.formatted(originalTweet.text()));
             twitterService.replyToTweet(generatedReply, originalTweet.id());
         }

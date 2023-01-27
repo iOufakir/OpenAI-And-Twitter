@@ -13,7 +13,7 @@ twitter:
   client-key: ${TWITTER_CLIENT_KEY}
   client-secret: ${TWITTER_CLIENT_SECRET}
   callback-url: http://www.example.com/callback
-  influencers-list: elonmusk,garyvee,tonyvalormusic,LIVEpositivity,InspiringThinkn,BrendonBurchard
+  influencers-list: elonmusk,garyvee,sama,tonyvalormusic,InspiringThinkn,BrendonBurchard
   tweets-max-results: 10
 
 openai:

@@ -15,6 +15,10 @@ public final class Constants {
 
     public static final String OPENAI_PROMPT_WRITE_TWEET = "Write a tweet as a real Human based for this tweet: %s";
 
-    public static final String OPENAI_PROMPT_REPLY_TO_TWEET="Write a short reply to this tweet as a real human without using hashtags: %s";
+    public static final String OPENAI_PROMPT_REPLY_TO_TWEET = "Write a short reply to this tweet as a real human without using hashtags: %s";
+
+    public static final String OPENAI_PROMPT_PREFIX = "\n\n";
+    public static final String OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL =
+            "ONLY answer with YES or NO, does the following comment contains harmful, negative or harassment? %s %s";
 
 }
