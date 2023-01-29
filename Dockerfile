@@ -1,4 +1,5 @@
-FROM amazoncorretto:17-al2-jdk
+#FOR linux/amd64
+FROM amazoncorretto:17-alpine-jdk
 WORKDIR /opt
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} ./openai-with-twitter-backend.jar
