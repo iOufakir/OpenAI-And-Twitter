@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users/{userId}")
 @PreAuthorize("hasAuthority('" + "USER" + "')")
+@CrossOrigin(origins = {"https://www.youtube.com", "https://youtu.be"})
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/comment/check")
+    @PostMapping("/comment/check")
     @ResponseStatus(HttpStatus.OK)
-    public boolean checkCommentNegativity(@Valid @RequestBody CommentRequest request){
+    public boolean checkCommentNegativity(@Valid @RequestBody CommentRequest request) {
         return userService.isHarmfulText(request.text());
     }
 }

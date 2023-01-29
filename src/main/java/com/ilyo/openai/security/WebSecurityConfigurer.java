@@ -24,9 +24,10 @@ public class WebSecurityConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrfConfigurer -> csrfConfigurer.csrfTokenRepository(csrfTokenRepository)
+        http.cors().and()
+                .csrf(csrfConfigurer -> csrfConfigurer.csrfTokenRepository(csrfTokenRepository)
                         .ignoringRequestMatchers("/users/1/**"))
-                .cors().disable()
+
                 .securityMatcher(new MediaTypeRequestMatcher(MediaType.APPLICATION_JSON))
                 .headers()
                 // helps to detect certain types of attacks, like XSS, data injection attacks...
