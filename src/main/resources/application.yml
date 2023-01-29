@@ -1,4 +1,5 @@
 server:
+  forward-headers-strategy: native
   servlet:
     context-path: /api
   port: 8082

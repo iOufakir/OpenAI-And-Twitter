@@ -39,16 +39,16 @@ public class OpenAIService {
     public boolean isTextNegativeOrHarmful(final String prompt) {
         var request = new CompletionsRequest(openAIConfig.model(),
                 prompt,
-                BigDecimal.ONE.intValue(),
-                OPENAI_TEMPERATURE);
+                BigDecimal.TEN.intValue(),
+                BigDecimal.ONE.floatValue());
         var response = RetrofitUtils.executeCall(openAIClient.getCompletionsResult(request));
-
-        System.out.println(response);
 
         if (Objects.nonNull(response) && !response.choices().isEmpty()) {
             var text = response.choices().get(0).text().strip();
             log.info("[OpenAI] Text Response: {}", text);
             return text.equalsIgnoreCase("YES");
+        }else {
+            log.warn("[OpenAI] Response: {}", response);
         }
         return false;
     }

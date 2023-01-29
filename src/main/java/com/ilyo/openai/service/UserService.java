@@ -1,14 +1,10 @@
 package com.ilyo.openai.service;
 
-import com.ilyo.openai.external.twitter.dto.Tweet;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
-import static com.ilyo.openai.service.TwitterService.getUser;
-import static com.ilyo.openai.util.Constants.*;
+import static com.ilyo.openai.util.Constants.OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL;
 
 @Service
 @AllArgsConstructor
@@ -19,7 +15,8 @@ public class UserService {
 
 
     public boolean isHarmfulText(final String text) {
-        return openAIService.isTextNegativeOrHarmful(OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL.formatted(text, OPENAI_PROMPT_PREFIX));
+        return openAIService.isTextNegativeOrHarmful(OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL
+                .formatted(text));
     }
 
 

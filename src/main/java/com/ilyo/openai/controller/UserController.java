@@ -17,7 +17,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/comment/check")
+    @GetMapping("/comment/check")
     @ResponseStatus(HttpStatus.OK)
     public boolean checkCommentNegativity(@Valid @RequestBody CommentRequest request){
         return userService.isHarmfulText(request.text());
