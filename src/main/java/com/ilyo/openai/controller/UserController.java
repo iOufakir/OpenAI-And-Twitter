@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users/{userId}")
 @PreAuthorize("hasAuthority('" + "USER" + "')")
-@CrossOrigin(origins = {"https://www.youtube.com", "https://youtu.be"})
+@CrossOrigin(origins = {"http://localhost", "https://www.youtube.com", "https://youtu.be"})
 public class UserController {
 
     private final UserService userService;
