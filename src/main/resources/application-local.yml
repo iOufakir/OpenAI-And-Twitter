@@ -2,6 +2,3 @@ app:
   schedule:
     twitter-fixed-delay-expression: 0 14 19,18 * * *
 
-springfox:
-  documentation:
-    enabled: true

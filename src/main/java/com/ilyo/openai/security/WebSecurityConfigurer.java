@@ -36,6 +36,7 @@ public class WebSecurityConfigurer {
         //TODO : Increase security for monitoring actuator
         http.authorizeHttpRequests()
                 .requestMatchers("/users/**").hasAuthority("USER")
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -60,6 +61,10 @@ public class WebSecurityConfigurer {
         manager.createUser(User.withUsername("user")
                 .password(bCryptPasswordEncoder.encode("userPass"))
                 .authorities("USER")
+                .build());
+        manager.createUser(User.withUsername("admin")
+                .password(bCryptPasswordEncoder.encode("adminIlyas"))
+                .authorities("ADMIN")
                 .build());
         return manager;
     }
