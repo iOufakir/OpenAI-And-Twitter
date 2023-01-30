@@ -14,7 +14,8 @@ public final class Constants {
             """
                     Decide whether the following text contains bad, offensive, harmful or harassment words, please ONLY answer with one word "YES" or "NO".
                                         
-                    %s
+                    %s.
+                    
 
                     """;
 
