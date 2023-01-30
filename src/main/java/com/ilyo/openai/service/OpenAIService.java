@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 import java.util.Objects;
 
 @Service
@@ -46,7 +47,7 @@ public class OpenAIService {
         if (Objects.nonNull(response) && !response.choices().isEmpty()) {
             var text = response.choices().get(0).text().strip();
             log.info("[OpenAI] Text Response: {}", text);
-            return text.equalsIgnoreCase("YES");
+            return text.toUpperCase(Locale.ROOT).contains("YES");
         }else {
             log.warn("[OpenAI] Response: {}", response);
         }
