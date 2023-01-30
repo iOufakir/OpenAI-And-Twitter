@@ -20,7 +20,7 @@ twitter:
 openai:
   api-root: https://api.openai.com
   client-token: ${OPENAI_BEARER_TOKEN}
-  model: text-davinci-003
+  model: text-davinci-001
 
 springdoc:
   swagger-ui:
