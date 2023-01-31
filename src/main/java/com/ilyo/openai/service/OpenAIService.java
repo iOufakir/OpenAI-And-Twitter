@@ -28,8 +28,6 @@ public class OpenAIService {
                 BigDecimal.ONE.floatValue());
         final var response = RetrofitUtils.executeCall(openAIClient.getCompletionsResult(request));
 
-        System.out.println(request);
-
         if (Objects.nonNull(response) && !response.choices().isEmpty()) {
             var text = response.choices().get(0).text().strip();
             log.info("[OpenAI] Text Response: {}", text);
