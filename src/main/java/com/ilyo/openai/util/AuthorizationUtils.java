@@ -16,10 +16,4 @@ public class AuthorizationUtils {
     public static String createBasicToken(String token) {
         return "%s %s".formatted("Basic", token);
     }
-
-    public static String createBasicAuthorizationHeader(final String key, String password) {
-        var toEncodeToBase64 = "%s:%s".formatted(key, password);
-        return createBasicToken(Base64.getEncoder().encodeToString(toEncodeToBase64.getBytes(StandardCharsets.UTF_8)));
-    }
-
 }
