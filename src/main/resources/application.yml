@@ -2,7 +2,7 @@ server:
   forward-headers-strategy: native
   servlet:
     context-path: /api
-  port: 8083
+  port: 8082
 
 app:
   with-openai: ${APP_WITH_OPENAI}

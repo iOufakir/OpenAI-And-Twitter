@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.CompletableFuture;
+
 import static com.ilyo.openai.util.Constants.OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL;
 
 @Service
@@ -21,12 +23,12 @@ public class UserService {
 
 
     @Async
-    public boolean isTextHarmful(final String text) {
+    public CompletableFuture<Boolean> isTextHarmful(final String text) {
         if (appConfig.withOpenai()) {
-            return openAIService.isTextNegativeOrHarmful(OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL
-                    .formatted(text));
+            return CompletableFuture.completedFuture(openAIService.isTextNegativeOrHarmful(OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL
+                    .formatted(text)));
         } else {
-            return sentimentService.isTextNegative(text);
+            return CompletableFuture.completedFuture(sentimentService.isTextNegative(text));
         }
     }
 

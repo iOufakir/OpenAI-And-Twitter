@@ -20,7 +20,6 @@ public class OpenAIService {
     private final OpenAIClient openAIClient;
     private final OpenAIConfig openAIConfig;
 
-
     public boolean isTextNegativeOrHarmful(final String prompt) {
         var request = new CompletionsRequest(openAIConfig.model(),
                 prompt,

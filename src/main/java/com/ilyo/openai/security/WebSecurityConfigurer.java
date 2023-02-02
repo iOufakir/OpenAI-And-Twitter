@@ -24,7 +24,7 @@ public class WebSecurityConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors().disable()
+        http.cors().and()
                 .csrf(csrfConfigurer -> csrfConfigurer.csrfTokenRepository(csrfTokenRepository)
                         .ignoringRequestMatchers("/users/1/**"))
 
