@@ -13,7 +13,10 @@ public class SentimentService {
         final var sentimentPolarities = SentimentAnalyzer.getScoresFor(text);
         log.info("[Sentiment Analysis] Response for text: {} => {}", text, sentimentPolarities);
 
-        if (sentimentPolarities.getPositivePolarity() > 0 && sentimentPolarities.getNegativePolarity() == 0) {
+        if ((sentimentPolarities.getPositivePolarity() > 0 && sentimentPolarities.getNegativePolarity() < 0.11f)
+                || (sentimentPolarities.getNegativePolarity() == 0 && sentimentPolarities.getPositivePolarity() == 0
+                && (sentimentPolarities.getCompoundPolarity() >= 0 && sentimentPolarities.getCompoundPolarity() < 0.1f))
+                || (sentimentPolarities.getNeutralPolarity() > 0.3f && sentimentPolarities.getNegativePolarity() <= 0)) {
             return false;
         } else {
             return sentimentPolarities.getNegativePolarity() > 0 || sentimentPolarities.getCompoundPolarity() > -0.1f;
