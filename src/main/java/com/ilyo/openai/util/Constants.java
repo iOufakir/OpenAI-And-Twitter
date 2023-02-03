@@ -8,11 +8,8 @@ public final class Constants {
 
     public static final String OPENAI_PROMPT_DETECT_TEXT_IF_NEGATIVE_OR_HARMFUL =
             """
-                   Is the following comment text potentially harmful, offensive, or contains harassment language? (ONLY Answer with "YES" or "NO").
-                                        
-                    %s.
+                    Answer with "YES", if the following social media comment potentially insulting, offensive or harmful to an individual? [%s].
 
-
-                    """;
+                          """;
 
 }

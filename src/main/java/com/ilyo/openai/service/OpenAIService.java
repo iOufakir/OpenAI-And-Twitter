@@ -24,12 +24,12 @@ public class OpenAIService {
         var request = new CompletionsRequest(openAIConfig.model(),
                 prompt,
                 BigDecimal.TEN.intValue(),
-                BigDecimal.ONE.floatValue());
+                0.8f);
         final var response = RetrofitUtils.executeCall(openAIClient.getCompletionsResult(request));
 
         if (Objects.nonNull(response) && !response.choices().isEmpty()) {
             var text = response.choices().get(0).text().strip();
-            log.info("[OpenAI] Text Response: {}", text);
+            log.info("[OpenAI] Text Response: {} for Prompt: {}", text, prompt);
             return text.toUpperCase(Locale.ROOT).contains("YES");
         }else {
             log.warn("[OpenAI] Error Getting Response: {}", response);
