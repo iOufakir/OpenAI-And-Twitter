@@ -6,23 +6,21 @@ import com.ilyo.openai.external.twitter.dto.response.TweetCreationResponse;
 import lombok.SneakyThrows;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 /**
  * The interface Twitter service.
  */
 public interface TwitterService {
-    /**
-     * The constant LATEST_TWEETS_SECONDS_TO_SUBTRACT.
-     */
-    int LATEST_TWEETS_SECONDS_TO_SUBTRACT = 2 * 3600;
 
     /**
      * Gets filtered tweets.
      *
      * @return the filtered tweets
      */
-    LatestTweetsResponse getLatestTweets();
+    LatestTweetsResponse getLatestTweets(final Instant startTime);
 
     TweetCreationResponse publishTweet(final String tweetText);
 

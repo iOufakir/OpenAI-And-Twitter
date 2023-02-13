@@ -15,10 +15,16 @@ public class AppScheduler {
 
     private final UserService userService;
 
-    @Scheduled(cron = "${app.schedule.twitter-fixed-delay-expression}")
+    @Scheduled(cron = "${app.schedule.twitter-post-cron-expression}")
     public void startAppScheduler() {
         log.info("[Schedule] Current execution time: {}", LocalDateTime.now());
         userService.launchAutoTweet();
+    }
+
+    @Scheduled(cron = "${app.schedule.twitter-replies-cron-expression}")
+    public void startAutoRepliesScheduler() {
+        log.info("[Schedule Auto Replies] Current execution time: {}", LocalDateTime.now());
+        userService.launchAutoReplies();
     }
 
 }

@@ -36,18 +36,14 @@ public class BaseTwitterService implements TwitterService {
     private final SecureRandom secureRandom;
 
     @Override
-    public LatestTweetsResponse getLatestTweets() {
-        var startTime = Instant.now().minusSeconds(LATEST_TWEETS_SECONDS_TO_SUBTRACT)
-                .atZone(ZoneOffset.UTC) // Twitter use UTC
-                .toInstant();
-
+    public LatestTweetsResponse getLatestTweets(final Instant startTime) {
         log.info("Get Latest Tweets using {}", startTime);
-
         var call = twitterApiClient
-                .getPublicLatestTweets(AuthorizationUtils.createBearerToken(twitterConfig.clientToken()), TWITTER_SEARCH_QUERY.formatted(TWITTER_TEXT_SEARCH_QUERY,
+                .getPublicLatestTweets(AuthorizationUtils.createBearerToken(twitterConfig.clientToken()),
+                        TWITTER_SEARCH_QUERY.formatted(TWITTER_TEXT_SEARCH_QUERY,
                                 getInfluencersQuery(twitterConfig.influencersList().split(","))),
                         twitterConfig.tweetsMaxResults(),
-                        startTime);
+                        startTime.atZone(ZoneOffset.UTC).toInstant());
         return RetrofitUtils.executeCall(call);
     }
 
