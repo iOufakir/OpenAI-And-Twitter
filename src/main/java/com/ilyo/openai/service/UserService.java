@@ -29,7 +29,7 @@ public class UserService {
                 log.info("[Twitter] Starting to publish a new tweet from this tweet: {} - FROM: @{}", originalTweet.text(),
                         getUser(tweets.includes().users(), originalTweet.authorId()));
                 var generatedTweet = openAIService.generateNewTweet(OPENAI_PROMPT_WRITE_TWEET.formatted(originalTweet.text()));
-                publishTweet(generatedTweet);
+                twitterService.publishTweet(generatedTweet);
             } else {
                 log.warn("Couldn't get any tweets!");
             }
@@ -47,20 +47,13 @@ public class UserService {
 
                 // Don't include the tweet that contains only an image
                 if (!originalTweet.text().startsWith("http")) {
-                     var generatedReply = openAIService.generateNewTweet(OPENAI_PROMPT_REPLY_TO_TWEET.formatted(originalTweet.text()));
+                    var generatedReply = openAIService.generateNewTweet(OPENAI_PROMPT_REPLY_TO_TWEET.formatted(originalTweet.text()));
                     twitterService.replyToTweet(generatedReply, originalTweet.id());
                     twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
                 }
             } else {
                 log.warn("Couldn't get any tweets!");
             }
-        }
-    }
-
-    private void publishTweet(final String tweet) {
-        var creationResponse = twitterService.publishTweet(tweet).data();
-        if (creationResponse != null) {
-
         }
     }
 }
