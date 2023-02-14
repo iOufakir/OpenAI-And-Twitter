@@ -3,6 +3,7 @@ package com.ilyo.openai.service;
 import com.ilyo.openai.external.twitter.dto.TweetUser;
 import com.ilyo.openai.external.twitter.dto.response.LatestTweetsResponse;
 import com.ilyo.openai.external.twitter.dto.response.TweetCreationResponse;
+import com.ilyo.openai.external.twitter.dto.response.TweetLikeResponse;
 import lombok.SneakyThrows;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -25,6 +26,8 @@ public interface TwitterService {
     TweetCreationResponse publishTweet(final String tweetText);
 
     TweetCreationResponse replyToTweet(final String text, final String targetTweetId);
+
+    TweetLikeResponse likeTweet(final String userId, final String targetTweetId);
 
     @SneakyThrows
     default String buildOAuth2AuthorizeUrl(final String clientId, final String redirectUrl,

@@ -5,10 +5,12 @@ import com.ilyo.openai.external.twitter.config.TwitterConfig;
 import com.ilyo.openai.external.twitter.dto.TweetReply;
 import com.ilyo.openai.external.twitter.dto.request.AccessTokenRequest;
 import com.ilyo.openai.external.twitter.dto.request.TweetCreationRequest;
+import com.ilyo.openai.external.twitter.dto.request.TweetLikeRequest;
 import com.ilyo.openai.external.twitter.dto.request.TweetReplyRequest;
 import com.ilyo.openai.external.twitter.dto.response.AccessTokenResponse;
 import com.ilyo.openai.external.twitter.dto.response.LatestTweetsResponse;
 import com.ilyo.openai.external.twitter.dto.response.TweetCreationResponse;
+import com.ilyo.openai.external.twitter.dto.response.TweetLikeResponse;
 import com.ilyo.openai.service.MyWebClient;
 import com.ilyo.openai.service.TwitterService;
 import com.ilyo.openai.util.AuthorizationUtils;
@@ -49,22 +51,29 @@ public class BaseTwitterService implements TwitterService {
 
     @Override
     public TweetCreationResponse publishTweet(final String tweetText) {
-        var oAuth2BearerToken = getOAuth2Token();
+        var oAuth2BearerToken = getOAuth2Token("users.read tweet.read tweet.write offline.access");
         var call = twitterApiClient.createTweet(oAuth2BearerToken, new TweetCreationRequest(tweetText));
         return RetrofitUtils.executeCall(call);
     }
 
     @Override
     public TweetCreationResponse replyToTweet(final String text, final String targetTweetId) {
-        var oAuth2BearerToken = getOAuth2Token();
+        var oAuth2BearerToken = getOAuth2Token("users.read tweet.read tweet.write offline.access");
         var call = twitterApiClient.reply(oAuth2BearerToken, new TweetReplyRequest(text, new TweetReply(targetTweetId)));
         return RetrofitUtils.executeCall(call);
     }
 
-    private String getOAuth2Token() {
+    @Override
+    public TweetLikeResponse likeTweet(final String authenticatedUserId, final String targetTweetId) {
+        var oAuth2BearerToken = getOAuth2Token("users.read like.write tweet.read");
+        var call = twitterApiClient.likeTweet(oAuth2BearerToken, authenticatedUserId, new TweetLikeRequest(targetTweetId));
+        return RetrofitUtils.executeCall(call);
+    }
+
+    private String getOAuth2Token(String scope) {
         final var secretState = "state-%s".formatted(secureRandom.nextInt(9_000));
         final String authorizationUrl = buildOAuth2AuthorizeUrl(twitterConfig.clientKey(),
-                twitterConfig.callbackUrl(), "users.read tweet.read tweet.write offline.access",
+                twitterConfig.callbackUrl(), scope,
                 secretState);
         final var code = myWebClient.extractTwitterOAuth2Code(authorizationUrl, twitterConfig.callbackUrl());
         var accessTokenResponse = getAccessToken(new AccessTokenRequest(code,

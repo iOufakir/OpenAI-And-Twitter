@@ -18,13 +18,13 @@ public class AppScheduler {
     @Scheduled(cron = "${app.schedule.twitter-post-cron-expression}")
     public void startAppScheduler() {
         log.info("[Schedule] Current execution time: {}", LocalDateTime.now());
-        userService.launchAutoTweet();
+        userService.launchTwitterAutoPublish();
     }
 
     @Scheduled(cron = "${app.schedule.twitter-replies-cron-expression}")
     public void startAutoRepliesScheduler() {
         log.info("[Schedule Auto Replies] Current execution time: {}", LocalDateTime.now());
-        userService.launchAutoReplies();
+        userService.launchTwitterAutoReplies();
     }
 
 }
