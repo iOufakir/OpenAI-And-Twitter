@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public void launchTwitterAutoReplies() {
-        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofHours(6).toSeconds()));
+        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(5).toSeconds()));
 
         if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
             if (!tweets.data().isEmpty()) {
@@ -47,8 +47,8 @@ public class UserService {
 
                 // Don't include the tweet that contains only an image
                 if (!originalTweet.text().startsWith("http")) {
-                     //var generatedReply = openAIService.generateNewTweet(OPENAI_PROMPT_REPLY_TO_TWEET.formatted(originalTweet.text()));
-                    //twitterService.replyToTweet(generatedReply, originalTweet.id());
+                     var generatedReply = openAIService.generateNewTweet(OPENAI_PROMPT_REPLY_TO_TWEET.formatted(originalTweet.text()));
+                    twitterService.replyToTweet(generatedReply, originalTweet.id());
                     twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
                 }
             } else {
