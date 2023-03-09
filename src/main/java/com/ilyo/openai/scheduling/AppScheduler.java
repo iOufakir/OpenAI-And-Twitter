@@ -17,7 +17,7 @@ public class AppScheduler {
 
     @Scheduled(cron = "${app.schedule.twitter-post-cron-expression}")
     public void startAppScheduler() {
-        log.info("[Schedule] Current execution time: {}", LocalDateTime.now());
+        log.info("[Auto Publish] Current execution time: {}", LocalDateTime.now());
         userService.launchTwitterAutoPublish();
     }
 

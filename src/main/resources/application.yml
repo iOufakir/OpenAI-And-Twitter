@@ -5,7 +5,7 @@ server:
 
 app:
   schedule:
-    twitter-post-cron-expression: 0 0 12,16 * * *
+    twitter-post-cron-expression: 0 30 12,16,19 * * *
     twitter-replies-cron-expression: 0 0/5 * * * *
 
 twitter:
@@ -14,7 +14,7 @@ twitter:
   client-key: ${TWITTER_CLIENT_KEY}
   client-secret: ${TWITTER_CLIENT_SECRET}
   callback-url: http://www.example.com/callback
-  influencers-list: elonmusk,garyvee,sama,tonyvalormusic,InspiringThinkn,BrendonBurchard,leeerob,addyosmani
+  influencers-list: elonmusk,garyvee,sama,tonyvalormusic,InspiringThinkn,BrendonBurchard,leeerob,addyosmani,ErikSolheim
   tweets-max-results: 10
 
 openai:
