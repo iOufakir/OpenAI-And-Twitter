@@ -37,7 +37,7 @@ public class BaseTwitterService implements TwitterService {
 
     @Override
     public LatestTweetsResponse getLatestTweets(final Instant startTime, String searchQuery, boolean withInfluencers) {
-        log.info("Get Latest Tweets using {}", startTime);
+        log.debug("Get Latest Tweets using {}", startTime);
 
         var query = searchQuery;
         if (withInfluencers) {

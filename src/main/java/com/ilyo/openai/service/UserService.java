@@ -71,7 +71,7 @@ public class UserService {
                         getUser(tweets.includes().users(), originalTweet.authorId()));
 
                 var generatedReply = openAIService.generateChatMessage(
-                        OPENAI_PROMPT_PROMOTE_AFFILIATE_PRODUCT.formatted(TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT,
+                        OPENAI_PROMPT_PROMOTE_AFFILIATE_PRODUCT.formatted(AMAZON_AFFILIATE_TARGET_PRODUCT_NAME,
                                 AMAZON_AFFILIATE_TARGET_PRODUCT_URL, originalTweet));
                 twitterService.replyToTweet(generatedReply, originalTweet.id());
                 twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
