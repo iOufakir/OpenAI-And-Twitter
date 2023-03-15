@@ -69,7 +69,7 @@ public class UserService {
             if (!tweets.data().isEmpty()) {
                 for (var i = 0; i < 2; i++) {
                     var originalTweet = tweets.data().get(i);
-                    log.info("[Amazon Affiliate] Starting to reply to the Tweet: {} - FROM: @{}", originalTweet.text(),
+                    log.info("[Amazon Affiliate] Check Tweet: {} - FROM: @{}", originalTweet.text(),
                             getUser(tweets.includes().users(), originalTweet.authorId()));
                     // Check if the tweet worth it or not by using AI
                     var chatGptResponse = openAIService.generateChatMessage(TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT
@@ -83,8 +83,6 @@ public class UserService {
                         twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
                     }
                 }
-            } else {
-                log.warn("[Amazon Affiliate] Couldn't get any tweets!");
             }
         }
     }

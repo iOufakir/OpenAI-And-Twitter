@@ -11,18 +11,18 @@ public final class Constants {
     public static final String TWITTER_TEXT_SEARCH_QUERY = "-has:mentions -is:retweet (-has:links OR has:media)";
 
     public static final String TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT = """
-            "Portable Monitor" OR "monitor screen" OR "Touch screen" OR "laptop" lang:en
-            """;
-
-    public static final String TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT = """
-            Only Answer with 'YES' if you think I should add a promoting tweet about a "%s" product for the following tweet. Otherwise answer with 'NO'.
-
-            Here is the tweet: %s.
+            "Portable Monitor" OR "monitor screen" OR "Touch screen" OR "Computer Display" OR "macbook" OR "screen" lang:en
             """;
 
     public static final String AMAZON_AFFILIATE_TARGET_PRODUCT_NAME = "Portable Monitor";
 
     public static final String AMAZON_AFFILIATE_TARGET_PRODUCT_URL = "https://amzn.to/3YI3j0c";
+
+    public static final String TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT = """
+            Only Answer with 'YES' if you think It's a good idea to add a promoting tweet about a '%s' product for the following tweet, otherwise answer with 'NO'.
+
+            Here is the tweet: %s.
+            """;
 
     public static final String TWITTER_AUTHORIZE_APP_BUTTON_XPATH =
             "//div[@data-testid='OAuth_Consent_Button']";
