@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Locale;
 import java.util.Objects;
 
 import static com.ilyo.openai.service.TwitterService.getUser;
@@ -69,12 +70,16 @@ public class UserService {
                 var originalTweet = tweets.data().get(0);
                 log.info("[Amazon Affiliate] Starting to reply to the Tweet: {} - FROM: @{}", originalTweet.text(),
                         getUser(tweets.includes().users(), originalTweet.authorId()));
-
-                var generatedReply = openAIService.generateChatMessage(
-                        OPENAI_PROMPT_PROMOTE_AFFILIATE_PRODUCT.formatted(AMAZON_AFFILIATE_TARGET_PRODUCT_NAME,
-                                AMAZON_AFFILIATE_TARGET_PRODUCT_URL, originalTweet));
-                twitterService.replyToTweet(generatedReply, originalTweet.id());
-                twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
+                // Check if the tweet worth it or not by using AI
+                var chatGptResponse = openAIService.generateChatMessage(TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT
+                        .formatted(AMAZON_AFFILIATE_TARGET_PRODUCT_NAME, originalTweet));
+                if (chatGptResponse.toUpperCase(Locale.ROOT).contains("YES")) {
+                    chatGptResponse = openAIService.generateChatMessage(
+                            OPENAI_PROMPT_PROMOTE_AFFILIATE_PRODUCT.formatted(AMAZON_AFFILIATE_TARGET_PRODUCT_NAME,
+                                    AMAZON_AFFILIATE_TARGET_PRODUCT_URL, originalTweet));
+                    twitterService.replyToTweet(chatGptResponse.replace("\"", ""), originalTweet.id());
+                    twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
+                }
             } else {
                 log.warn("[Amazon Affiliate] Couldn't get any tweets!");
             }
