@@ -11,7 +11,7 @@ public final class Constants {
     public static final String TWITTER_TEXT_SEARCH_QUERY = "-has:mentions -is:retweet (-has:links OR has:media)";
 
     public static final String TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT = """
-            ("Portable Monitor" OR "monitor screen" OR "Touch screen" OR "Computer Display" OR "macbook" OR "laptop") lang:en -is:retweet
+            ("Portable Monitor" OR "monitor screen" OR "Touch screen" OR "Computer Display") lang:en -is:retweet -from:gadget_explorer
             """;
 
     public static final String AMAZON_AFFILIATE_TARGET_PRODUCT_NAME = "Portable Monitor";

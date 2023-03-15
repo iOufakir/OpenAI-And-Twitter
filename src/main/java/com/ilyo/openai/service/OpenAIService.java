@@ -40,8 +40,7 @@ public class OpenAIService {
     }
 
     // FOR the latest API
-    public String generateChatMessage(final String prompt) {
-        List<ChatMessage> chatMessages = List.of(new ChatMessage("user", prompt));
+    public String generateChatMessage(final List<ChatMessage> chatMessages) {
         var request = new ChatCompletionsRequest(openAIConfig.model(),
                 chatMessages,
                 OPENAI_MAX_TOKENS,
