@@ -25,7 +25,7 @@ public class OpenAIService {
     private final OpenAIConfig openAIConfig;
 
     public String generateNewTweet(final String prompt) {
-        var request = new CompletionsRequest(openAIConfig.model(),
+        var request = new CompletionsRequest(openAIConfig.oldModel(),
                 prompt,
                 OPENAI_MAX_TOKENS,
                 OPENAI_TEMPERATURE);

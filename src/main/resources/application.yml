@@ -22,6 +22,7 @@ openai:
   api-root: https://api.openai.com
   client-token: ${OPENAI_BEARER_TOKEN}
   model: gpt-3.5-turbo
+  old-model: text-davinci-003
 
 springdoc:
   swagger-ui:
