@@ -15,7 +15,7 @@ public final class Constants {
             """;
 
     public static final String TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT = """
-            Only Answer with 'YES' if you think I should add a promoting tweet about a "%s" product. Otherwise answer with 'NO'.
+            Only Answer with 'YES' if you think I should add a promoting tweet about a "%s" product for the following tweet. Otherwise answer with 'NO'.
 
             Here is the tweet: %s.
             """;
