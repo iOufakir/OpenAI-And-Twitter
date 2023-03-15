@@ -5,8 +5,9 @@ server:
 
 app:
   schedule:
-    twitter-post-cron-expression: 0 30 12,16,19 * * *
+    twitter-post-cron-expression: 0 30 12,15,16,19 * * *
     twitter-replies-cron-expression: 0 0/5 * * * *
+    twitter-amazon-affiliate-program-cron-expression: 0 0/1 * * * *
 
 twitter:
   api-root: https://api.twitter.com/2/
@@ -20,7 +21,7 @@ twitter:
 openai:
   api-root: https://api.openai.com
   client-token: ${OPENAI_BEARER_TOKEN}
-  model: text-davinci-003
+  model: gpt-3.5-turbo
 
 springdoc:
   swagger-ui:

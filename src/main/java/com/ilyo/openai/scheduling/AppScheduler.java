@@ -23,8 +23,14 @@ public class AppScheduler {
 
     @Scheduled(cron = "${app.schedule.twitter-replies-cron-expression}")
     public void startAutoRepliesScheduler() {
-        log.info("[Schedule Auto Replies] Current execution time: {}", LocalDateTime.now());
+        // log.info("[Schedule Auto Replies] Current execution time: {}", LocalDateTime.now());
         userService.launchTwitterAutoReplies();
+    }
+
+
+    @Scheduled(cron = "${app.schedule.twitter-amazon-affiliate-program-cron-expression}")
+    public void startAmazonAffiliateScheduler() {
+        userService.launchAmazonAffiliateProgram();
     }
 
 }

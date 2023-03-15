@@ -21,7 +21,7 @@ public interface TwitterService {
      *
      * @return the filtered tweets
      */
-    LatestTweetsResponse getLatestTweets(final Instant startTime);
+    LatestTweetsResponse getLatestTweets(final Instant startTime, String searchQuery, boolean withInfluencers);
 
     TweetCreationResponse publishTweet(final String tweetText);
 

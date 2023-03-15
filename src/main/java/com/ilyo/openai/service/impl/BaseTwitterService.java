@@ -23,8 +23,6 @@ import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.ZoneOffset;
 
-import static com.ilyo.openai.util.Constants.TWITTER_SEARCH_QUERY;
-import static com.ilyo.openai.util.Constants.TWITTER_TEXT_SEARCH_QUERY;
 
 @Service
 @AllArgsConstructor
@@ -38,12 +36,15 @@ public class BaseTwitterService implements TwitterService {
     private final SecureRandom secureRandom;
 
     @Override
-    public LatestTweetsResponse getLatestTweets(final Instant startTime) {
+    public LatestTweetsResponse getLatestTweets(final Instant startTime, String searchQuery, boolean withInfluencers) {
         log.info("Get Latest Tweets using {}", startTime);
+
+        var query = searchQuery;
+        if (withInfluencers) {
+            query = "%s (%s)".formatted(searchQuery, getInfluencersQuery(twitterConfig.influencersList().split(",")));
+        }
         var call = twitterApiClient
-                .getPublicLatestTweets(AuthorizationUtils.createBearerToken(twitterConfig.clientToken()),
-                        TWITTER_SEARCH_QUERY.formatted(TWITTER_TEXT_SEARCH_QUERY,
-                                getInfluencersQuery(twitterConfig.influencersList().split(","))),
+                .getPublicLatestTweets(AuthorizationUtils.createBearerToken(twitterConfig.clientToken()), query,
                         twitterConfig.tweetsMaxResults(),
                         startTime.atZone(ZoneOffset.UTC).toInstant());
         return RetrofitUtils.executeCall(call);

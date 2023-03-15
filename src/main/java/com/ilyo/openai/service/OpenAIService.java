@@ -2,6 +2,8 @@ package com.ilyo.openai.service;
 
 import com.ilyo.openai.external.openai.client.OpenAIClient;
 import com.ilyo.openai.external.openai.config.OpenAIConfig;
+import com.ilyo.openai.external.openai.dto.ChatCompletionsRequest;
+import com.ilyo.openai.external.openai.dto.ChatMessage;
 import com.ilyo.openai.external.openai.dto.CompletionsRequest;
 import com.ilyo.openai.util.RetrofitUtils;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -30,6 +33,23 @@ public class OpenAIService {
 
         if (Objects.nonNull(response) && !response.choices().isEmpty()) {
             var text = response.choices().get(0).text().strip();
+            log.info("[OpenAI] Text Response: {}", text);
+            return text;
+        }
+        return "";
+    }
+
+    // FOR the latest API
+    public String generateChatMessage(final String prompt) {
+        List<ChatMessage> chatMessages = List.of(new ChatMessage("user", prompt));
+        var request = new ChatCompletionsRequest(openAIConfig.model(),
+                chatMessages,
+                OPENAI_MAX_TOKENS,
+                OPENAI_TEMPERATURE);
+        var response = RetrofitUtils.executeCall(openAIClient.getChatCompletionsResult(request));
+
+        if (Objects.nonNull(response) && !response.choices().isEmpty()) {
+            var text = response.choices().get(0).message().content().strip();
             log.info("[OpenAI] Text Response: {}", text);
             return text;
         }

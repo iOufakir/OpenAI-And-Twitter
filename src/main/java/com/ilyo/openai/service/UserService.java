@@ -21,28 +21,30 @@ public class UserService {
     private final OpenAIService openAIService;
 
     public void launchTwitterAutoPublish() {
-        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofHours(2).toSeconds()));
+        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofHours(2).toSeconds()),
+                TWITTER_TEXT_SEARCH_QUERY, true);
 
         if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
             if (!tweets.data().isEmpty()) {
                 var originalTweet = tweets.data().get(0);
-                log.info("[Twitter] Starting to publish a new tweet from this tweet: {} - FROM: @{}", originalTweet.text(),
+                log.info("[Twitter Auto Publish] Starting to publish a new tweet from this tweet: {} - FROM: @{}", originalTweet.text(),
                         getUser(tweets.includes().users(), originalTweet.authorId()));
                 var generatedTweet = openAIService.generateNewTweet(OPENAI_PROMPT_WRITE_TWEET.formatted(originalTweet.text()));
                 twitterService.publishTweet(generatedTweet);
             } else {
-                log.warn("Couldn't get any tweets!");
+                log.warn("[Twitter Auto Publish] Couldn't get any tweets!");
             }
         }
     }
 
     public void launchTwitterAutoReplies() {
-        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(5).toSeconds()));
+        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(5).toSeconds()),
+                TWITTER_TEXT_SEARCH_QUERY, true);
 
         if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
             if (!tweets.data().isEmpty()) {
                 var originalTweet = tweets.data().get(0);
-                log.info("[Twitter] Starting to reply to the Tweet: {} - FROM: @{}", originalTweet.text(),
+                log.info("[Twitter Auto Replies] Starting to reply to the Tweet: {} - FROM: @{}", originalTweet.text(),
                         getUser(tweets.includes().users(), originalTweet.authorId()));
 
                 // Don't include the tweet that contains only an image
@@ -52,7 +54,29 @@ public class UserService {
                     twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
                 }
             } else {
-                log.warn("Couldn't get any tweets!");
+                log.warn("[Twitter Auto Replies] Couldn't get any tweets!");
+            }
+        }
+    }
+
+
+    public void launchAmazonAffiliateProgram() {
+        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(1).toSeconds()),
+                TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT, false);
+
+        if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
+            if (!tweets.data().isEmpty()) {
+                var originalTweet = tweets.data().get(0);
+                log.info("[Amazon Affiliate] Starting to reply to the Tweet: {} - FROM: @{}", originalTweet.text(),
+                        getUser(tweets.includes().users(), originalTweet.authorId()));
+
+                var generatedReply = openAIService.generateChatMessage(
+                        OPENAI_PROMPT_PROMOTE_AFFILIATE_PRODUCT.formatted(TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT,
+                                AMAZON_AFFILIATE_TARGET_PRODUCT_URL, originalTweet));
+                twitterService.replyToTweet(generatedReply, originalTweet.id());
+                twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
+            } else {
+                log.warn("[Amazon Affiliate] Couldn't get any tweets!");
             }
         }
     }
