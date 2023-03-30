@@ -64,7 +64,7 @@ public class UserService {
 
 
     public void launchAmazonAffiliateProgram() {
-        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(4).toSeconds()),
+        var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(2).toSeconds()),
                 TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT, false);
 
         if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {

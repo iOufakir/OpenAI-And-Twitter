@@ -6,8 +6,8 @@ server:
 app:
   schedule:
     twitter-post-cron-expression: 0 30 12,15,16,19 * * *
-    twitter-replies-cron-expression: 0 0/5 * * * *
-    twitter-amazon-affiliate-program-cron-expression: 0 0/4 * * * *
+    twitter-replies-cron-expression: 0 0/6 * * * *
+    twitter-amazon-affiliate-program-cron-expression: 0 0/2 * * * *
 
 twitter:
   api-root: https://api.twitter.com/2/
