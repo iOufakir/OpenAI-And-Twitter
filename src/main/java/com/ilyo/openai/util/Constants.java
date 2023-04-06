@@ -18,7 +18,7 @@ public final class Constants {
 
     public static final String AMAZON_AFFILIATE_TARGET_PRODUCT_URL = "https://amzn.to/3LrwC4b";
 
-    public static final String TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT = """
+    public static final String OPENAI_PROMPT_IF_SHOULD_PROMOTE_PRODUCT = """
             Only Answer with 'YES' if you think It's a good idea to add a promoting tweet about '%s' product for the following tweet, otherwise answer with 'NO'.
 
             Here is the tweet: %s.

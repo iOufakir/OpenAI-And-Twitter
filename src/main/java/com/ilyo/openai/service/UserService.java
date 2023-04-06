@@ -67,14 +67,13 @@ public class UserService {
         var tweets = twitterService.getLatestTweets(Instant.now().minusSeconds(Duration.ofMinutes(2).toSeconds()),
                 TWITTER_SEARCH_QUERY_AFFILIATE_PRODUCT, false);
 
-        if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data())) {
-            if (!tweets.data().isEmpty()) {
+        if (Objects.nonNull(tweets) && Objects.nonNull(tweets.data()) && (!tweets.data().isEmpty())) {
                 var originalTweet = tweets.data().get(0);
                 log.info("[Amazon Affiliate] Check Tweet: {} - FROM: @{}", originalTweet.text(),
                         getUser(tweets.includes().users(), originalTweet.authorId()));
 
-                // Check if the tweet worth it or not by using AI
-                var userPrompt = TWITTER_SEARCH_QUERY_IF_SHOULD_PROMOTE_PRODUCT.formatted(AMAZON_AFFILIATE_TARGET_PRODUCT_NAME, originalTweet);
+                // Check if the tweet worth it or not by asking AI
+                var userPrompt = OPENAI_PROMPT_IF_SHOULD_PROMOTE_PRODUCT.formatted(AMAZON_AFFILIATE_TARGET_PRODUCT_NAME, originalTweet);
                 var chatGptResponse = openAIService.generateChatMessage(List.of(new ChatMessage("user", userPrompt)));
 
                 if (chatGptResponse.toUpperCase(Locale.ROOT).contains("YES")) {
@@ -85,7 +84,6 @@ public class UserService {
                     twitterService.replyToTweet(chatGptResponse.replace("\"", ""), originalTweet.id());
                     twitterService.likeTweet(TWITTER_AUTHENTICATED_USER_ID, originalTweet.id());
                 }
-            }
         }
     }
 }

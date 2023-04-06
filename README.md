@@ -1,12 +1,11 @@
 # Introduction
 
-This repository contains a sample project using OpenAI and Twitter, it's basically a Job scheduler that will be executed each X seconds to publish tweets on Twitter using OpenAI.
+This repository contains a sample project using OpenAI and Twitter API, it's basically a Job scheduler that will be executed each X seconds to publish and reply to tweets using OpenAI.
 
 ## Prerequisites
 
 - Java 17
 - IntelliJ
-- Docker
 
 ### Running the application
 
@@ -39,4 +38,4 @@ Swagger documentation can be found on **/api/swagger** and is accessible only by
 
 Swagger is enabled in these environments:
 
-- local -  `http://localhost:8080/api/swagger`
+- local: [http://localhost:8080/api/swagger](http://localhost:8080/api/swagger)
