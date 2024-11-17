@@ -1,8 +1,8 @@
 package com.ilyo.openai.external.openai.client;
 
 import com.ilyo.openai.external.openai.config.OpenAIConfig;
-import com.ilyo.openai.util.AuthorizationUtils;
-import com.ilyo.openai.util.ObjectMapperUtils;
+import com.ilyo.openai.core.utils.AuthorizationUtils;
+import com.ilyo.openai.core.utils.ObjectMapperUtils;
 import lombok.AllArgsConstructor;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;

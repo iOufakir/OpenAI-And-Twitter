@@ -15,14 +15,22 @@ twitter:
   client-key: ${TWITTER_CLIENT_KEY}
   client-secret: ${TWITTER_CLIENT_SECRET}
   callback-url: http://www.example.com/callback
-  influencers-list: elonmusk,garyvee,sama,tonyvalormusic,InspiringThinkn,BrendonBurchard,leeerob,addyosmani,ErikSolheim,svpino
+  influencers-list:
+    - CoinDesk
+    - elonmusk
+    - 0xPolygon
+    - themarkethustle
+    - sandeepnailwal
+    - theRealKiyosaki
+    - VitalikButerin
+    - 0xPolygonFdn
+    - cz_binance
   tweets-max-results: 10
 
 openai:
   api-root: https://api.openai.com
   client-token: ${OPENAI_BEARER_TOKEN}
-  model: gpt-3.5-turbo
-  old-model: text-davinci-003
+  model: gpt-4o-mini
 
 springdoc:
   swagger-ui:

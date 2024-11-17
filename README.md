@@ -4,7 +4,7 @@ This repository contains a sample project using OpenAI and Twitter API, it's bas
 
 ## Prerequisites
 
-- Java 17
+- Java 21
 - IntelliJ
 
 ### Running the application
