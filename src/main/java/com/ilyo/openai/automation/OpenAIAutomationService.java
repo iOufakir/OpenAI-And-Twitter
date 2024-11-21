@@ -53,13 +53,15 @@ public class OpenAIAutomationService {
     // To react as human
     scrollBy(webDriver, secureRandom.nextInt(100, 400));
     randomSleep(1500, 3500);
-
     final var searchElement = webDriver.findElement(By.cssSelector(CHATGPT_DIV_SELECTOR));
     searchElement.click();
+
     final var jsDriver = (JavascriptExecutor) webDriver;
     jsDriver.executeScript("arguments[0].innerText = arguments[1]", searchElement.findElement(By.cssSelector("p")), searchValue);
     randomSleep(2500, 4500);
     webDriver.findElement(By.cssSelector(CHATGPT_SEND_BUTTON_SELECTOR)).click();
+    // Wait for the response, this will help to act as a human
+    randomSleep(5000, 8000);
   }
 
 

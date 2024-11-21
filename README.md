@@ -1,6 +1,9 @@
 # Introduction
 
-This repository contains a sample project using OpenAI and Twitter API, it's basically a Job scheduler that will be executed each X seconds to publish and reply to tweets using OpenAI.
+This repository is about a sample project using OpenAI, Twitter API, Selenium and other external tools.
+
+The original idea was to create a job scheduler that will be executed each X seconds to publish and reply to tweets using OpenAI. 
+However, the project also supports trading cryptocurrencies by leveraging the tweets and news content.
 
 ## Prerequisites
 
