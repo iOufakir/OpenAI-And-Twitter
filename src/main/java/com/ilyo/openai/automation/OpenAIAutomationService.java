@@ -57,9 +57,11 @@ public class OpenAIAutomationService {
     searchElement.click();
 
     final var jsDriver = (JavascriptExecutor) webDriver;
-    jsDriver.executeScript("arguments[0].innerText = arguments[1]", searchElement.findElement(By.cssSelector("p")), searchValue);
+    final var htmlSearchValue = searchValue.replace("\n", "<p><br class=\"ProseMirror-trailingBreak\"/></p>");
+    jsDriver.executeScript("arguments[0].innerHTML = arguments[1]", searchElement, htmlSearchValue);
     randomSleep(2500, 4500);
     webDriver.findElement(By.cssSelector(CHATGPT_SEND_BUTTON_SELECTOR)).click();
+    log.debug("[OpenAI] Prompt has been sent successfully {}", searchValue);
     // Wait for the response, this will help to act as a human
     randomSleep(5000, 8000);
   }

@@ -24,7 +24,10 @@ public class OpenAIUtils {
       """;
 
   public static final String AI_PROMPT_CRYPTO_TRADING_USER = """
-      Context: I am considering trading a cryptocurrency called "{0}", so as a Financial data model is it a good idea to buy or sell "{0}" crypto based on the {2} data?
+      You are a helpful Financial assistant, that answer and analyse articles, latest news and financial data.
+      Consider checking financial health, Yahoo data, and industry trends, any recent news or events affecting will be appreciated.
+      
+      Context: I am considering trading a cryptocurrency called "{0}", so is it a good idea to buy or sell "{0}" crypto based on the {2}?
       - Crypto Fear & Greed Index: Today: {3} - Yesterday: {4} - Last Week: {5}
       - Price of "{0}": Today: {6} - Yesterday: {7} - Last Week: {8}
       
