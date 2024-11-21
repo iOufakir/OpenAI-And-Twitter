@@ -1,6 +1,7 @@
 package com.ilyo.openai.trading.controller;
 
 
+import com.ilyo.openai.core.enums.CoinToken;
 import com.ilyo.openai.trading.service.TradingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class TradingController {
 
   @PostMapping("/crypto")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void tradeCrypto(@RequestParam String token) {
+  public void tradeCrypto(@RequestParam CoinToken token) {
     tradingService.startCryptoTrading(token);
   }
 

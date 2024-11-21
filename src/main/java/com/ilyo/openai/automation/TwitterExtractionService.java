@@ -56,7 +56,7 @@ public class TwitterExtractionService {
 
     WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(TWITTER_TIMELINE_SELECTOR)));
-    scrollBy(webDriver, 800);
+    scrollBy(webDriver, 1000);
 
     final var tweetElements = findTweets();
     final List<Tweet> tweets = new ArrayList<>();
@@ -64,7 +64,7 @@ public class TwitterExtractionService {
       final var tweetAuthor = tweetElement.findElement(By.cssSelector(TWEET_AUTHOR_SELECTOR)).getText();
       final var tweetText = tweetElement.findElement(By.cssSelector(TWEET_TEXT_SELECTOR)).getText();
       if (tweetText.length() >= VALID_TWEET_MIN_LENGTH) {
-        log.debug("Retrieved tweet from: {} -> {}", tweetAuthor, tweetText);
+        log.info("Retrieved tweet from: {} -> {}", tweetAuthor, tweetText);
         tweets.add(Tweet.builder().authorId(tweetAuthor).text(tweetText).build());
       }
     }

@@ -1,4 +1,4 @@
-package com.ilyo.openai.external.openai.dto;
+package com.ilyo.openai.external.openai.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

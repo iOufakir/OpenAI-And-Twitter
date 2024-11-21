@@ -23,8 +23,9 @@ public class GoogleNewsExtractionService {
 
   public static final String GOOGLE_NEWS_SELECTOR = "main div:nth-child(2) > c-wiz article a[href^='./read/']";
   public static final String GOOGLE_ARTICLE_SELECTOR =
-      "body #content-area, body .news-content, body .post-content, body div .main-content, body div .article-body, body div .article, body div article, body div .feed-layout-main, body div .layout-main";
-  public static final String GOOGLE_CRYPTO_NEWS_URL = "https://news.google.com/search?q=%s \"market\" when:1d";
+      "body #content-area, body .news-content, body .post-content, body div .main-content, body div .article-body, " +
+          "body div .article, body div article, body div .feed-layout-main, body div .layout-main";
+  public static final String GOOGLE_SPECIFIC_NEWS_URL = "https://news.google.com/search?q=\"%s\" when:1d";
   public static final String GOOGLE_NEWS_URL = "https://news.google.com/search?q=%s when:1d";
 
   private final WebDriver webDriver;

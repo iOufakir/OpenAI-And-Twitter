@@ -1,9 +1,9 @@
 package com.ilyo.openai.external.openai.client;
 
-import com.ilyo.openai.external.openai.dto.ChatCompletionsRequest;
-import com.ilyo.openai.external.openai.dto.ChatCompletionsResponse;
-import com.ilyo.openai.external.openai.dto.CompletionsRequest;
-import com.ilyo.openai.external.openai.dto.CompletionsResponse;
+import com.ilyo.openai.external.openai.dto.request.ChatCompletionsRequest;
+import com.ilyo.openai.external.openai.dto.response.ChatCompletionsResponse;
+import com.ilyo.openai.external.openai.dto.request.CompletionsRequest;
+import com.ilyo.openai.external.openai.dto.response.CompletionsResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

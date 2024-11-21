@@ -26,6 +26,7 @@ public class OpenAIUtils {
   public static final String AI_PROMPT_CRYPTO_TRADING_USER = """
       Context: I am considering trading a cryptocurrency called "{0}", so as a Financial data model is it a good idea to buy or sell "{0}" crypto based on the {2} data?
       - Crypto Fear & Greed Index: Today: {3} - Yesterday: {4} - Last Week: {5}
+      - Price of "{0}": Today: {6} - Yesterday: {7} - Last Week: {8}
       
       Prompt: Based on this information, should I buy, wait or sell "{0}", and why?
       

@@ -9,28 +9,32 @@ app:
     twitter-replies-cron-expression: 0 0/6 * * * *
     twitter-amazon-affiliate-program-cron-expression: 0 0/2 * * * *
 
-twitter:
-  api-root: https://api.twitter.com/2/
-  client-token: ${TWITTER_BEARER_TOKEN}
-  client-key: ${TWITTER_CLIENT_KEY}
-  client-secret: ${TWITTER_CLIENT_SECRET}
-  callback-url: http://www.example.com/callback
-  influencers-list:
-    - CoinDesk
-    - elonmusk
-    - 0xPolygon
-    - themarkethustle
-    - sandeepnailwal
-    - theRealKiyosaki
-    - VitalikButerin
-    - 0xPolygonFdn
-    - cz_binance
-  tweets-max-results: 10
-
-openai:
-  api-root: https://api.openai.com
-  client-token: ${OPENAI_BEARER_TOKEN}
-  model: gpt-4o-mini
+api:
+  openai:
+    api-root: https://api.openai.com
+    client-token: ${OPENAI_BEARER_TOKEN}
+    model: gpt-4o-mini
+  coingecko:
+    api-root: https://api.coingecko.com/api/
+    api-key: ${COINGECKO_API_KEY}
+  twitter:
+    api-root: https://api.twitter.com/2/
+    client-token: ${TWITTER_BEARER_TOKEN}
+    client-key: ${TWITTER_CLIENT_KEY}
+    client-secret: ${TWITTER_CLIENT_SECRET}
+    callback-url: http://www.example.com/callback
+    influencers-list:
+      - CoinDesk
+      - elonmusk
+      - 0xPolygon
+      - themarkethustle
+      - sandeepnailwal
+      - theRealKiyosaki
+      - VitalikButerin
+      - 0xPolygonFdn
+      - cz_binance
+      - brian_armstrong
+    tweets-max-results: 10
 
 springdoc:
   swagger-ui:

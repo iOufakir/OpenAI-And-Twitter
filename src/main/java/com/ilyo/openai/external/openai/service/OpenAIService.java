@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.ilyo.openai.core.utils.RetrofitUtils;
 import com.ilyo.openai.external.openai.client.OpenAIClient;
 import com.ilyo.openai.external.openai.config.OpenAIConfig;
-import com.ilyo.openai.external.openai.dto.ChatCompletionsRequest;
+import com.ilyo.openai.external.openai.dto.request.ChatCompletionsRequest;
 import com.ilyo.openai.external.openai.dto.ChatMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
