@@ -8,7 +8,7 @@ app:
     twitter-post-cron-expression: 0 30 12,15,16,19 * * *
     twitter-replies-cron-expression: 0 0/6 * * * *
     twitter-amazon-affiliate-program-cron-expression: 0 0/2 * * * *
-    trading-crypto-cron-expression: 0 11,23 * * * *
+    trading-crypto-cron-expression: 0 0 11,18,23 * * *
 
 api:
   openai:
@@ -26,6 +26,7 @@ api:
     callback-url: http://www.example.com/callback
     influencers-list:
       - CoinDesk
+      - RaoulGMI
       - elonmusk
       - 0xPolygon
       - themarkethustle

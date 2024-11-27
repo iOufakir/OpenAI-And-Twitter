@@ -11,6 +11,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,9 +24,8 @@ public class GoogleNewsExtractionService {
 
   public static final String GOOGLE_NEWS_SELECTOR = "main div:nth-child(2) > c-wiz article a[href^='./read/']";
   public static final String GOOGLE_ARTICLE_SELECTOR =
-      "body #content-area, body .news-content, body .post-content, body div .main-content, body div .article-body, " +
-          "body div .article, body div article, body div .feed-layout-main, body div .layout-main";
-  public static final String GOOGLE_SPECIFIC_NEWS_URL = "https://news.google.com/search?q=\"%s\" when:1d";
+      "body #content-area, body .news-content, body .post-content, body div .main-content, body div .article-body, body div .article, body div article, body div .feed-layout-main, body div .layout-main, div[class*='main_content']";
+  public static final String GOOGLE_CRYPTO_NEWS_URL = "https://news.google.com/search?q=\"%s\" crypto when:1d";
   public static final String GOOGLE_NEWS_URL = "https://news.google.com/search?q=%s when:1d";
 
   private final WebDriver webDriver;
@@ -48,10 +48,12 @@ public class GoogleNewsExtractionService {
       final var articleUrl = articlesUrls.get(i);
       log.debug("Retrieved article from URL: {}", articleUrl);
       webDriver.navigate().to(articleUrl);
-
-      WebElement articleBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(GOOGLE_ARTICLE_SELECTOR)));
-      log.info("Retrieved article from URL: {}", webDriver.getCurrentUrl());
-      articlesText.add(cleanText(articleBody.getText()));
+      try {
+        WebElement articleBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(GOOGLE_ARTICLE_SELECTOR)));
+        articlesText.add(cleanText(articleBody.getText()));
+      } catch (WebDriverException e) {
+        log.error("Can't retrieve article from URL: {} - {}", webDriver.getCurrentUrl(), e.getMessage());
+      }
     }
     log.info("Retrieved articles: {}", articlesText.size());
     return articlesText;

@@ -64,7 +64,8 @@ public class TwitterExtractionService {
       final var tweetAuthor = tweetElement.findElement(By.cssSelector(TWEET_AUTHOR_SELECTOR)).getText();
       final var tweetText = tweetElement.findElement(By.cssSelector(TWEET_TEXT_SELECTOR)).getText();
       if (tweetText.length() >= VALID_TWEET_MIN_LENGTH) {
-        log.info("Retrieved tweet from: {} -> {}", tweetAuthor, tweetText);
+        log.info("Retrieved tweet from: {}", tweetAuthor);
+        log.debug("{}", tweetText);
         tweets.add(Tweet.builder().authorId(tweetAuthor).text(tweetText).build());
       }
     }

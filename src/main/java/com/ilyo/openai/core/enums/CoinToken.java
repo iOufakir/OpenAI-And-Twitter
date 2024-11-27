@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum CoinToken {
 
-  POL("polygon-ecosystem-token", "polygon");
+  POL("polygon-ecosystem-token", "polygon"),
+  ETH("ethereum", "ethereum");
 
   private final String id;
   private final String fullName;

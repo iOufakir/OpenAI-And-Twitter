@@ -17,6 +17,7 @@ public class ScheduledConfig {
     public ThreadPoolTaskScheduler threadPoolTaskScheduler(){
         var threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
         threadPoolTaskScheduler.setPoolSize(5);
+        threadPoolTaskScheduler.initialize();
         return threadPoolTaskScheduler;
     }
 }

@@ -33,11 +33,10 @@ public class OpenAIAutomationService {
 
   @SneakyThrows
   public void sendPrompt(final String searchValue, final PromptType promptType) {
-    // To react as human
-    randomSleep(2000, 5000);
     webDriver.get(CHATGPT_URL);
     // To react as human
-    scrollBy(webDriver, secureRandom.nextInt(100, 400));
+    scrollBy(webDriver, secureRandom.nextInt(500, 800));
+    randomSleep(2000, 7000);
 
     final var wait = new WebDriverWait(webDriver, Duration.ofSeconds(secureRandom.nextInt(5, 12)));
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CHATGPT_DIV_SELECTOR)));
@@ -52,18 +51,19 @@ public class OpenAIAutomationService {
   private void writeAndSendPrompt(final String searchValue) {
     // To react as human
     scrollBy(webDriver, secureRandom.nextInt(100, 400));
-    randomSleep(1500, 3500);
+    randomSleep(1200, 3500);
     final var searchElement = webDriver.findElement(By.cssSelector(CHATGPT_DIV_SELECTOR));
     searchElement.click();
+    randomSleep(500, 1500);
 
     final var jsDriver = (JavascriptExecutor) webDriver;
     final var htmlSearchValue = searchValue.replace("\n", "<p><br class=\"ProseMirror-trailingBreak\"/></p>");
     jsDriver.executeScript("arguments[0].innerHTML = arguments[1]", searchElement, htmlSearchValue);
-    randomSleep(2500, 4500);
+    randomSleep(2400, 4400);
     webDriver.findElement(By.cssSelector(CHATGPT_SEND_BUTTON_SELECTOR)).click();
-    log.debug("[OpenAI] Prompt has been sent successfully {}", searchValue);
+    log.info("[OpenAI] Prompt has been sent successfully {}", searchValue);
     // Wait for the response, this will help to act as a human
-    randomSleep(5000, 8000);
+    randomSleep(8000, 12_000);
   }
 
 

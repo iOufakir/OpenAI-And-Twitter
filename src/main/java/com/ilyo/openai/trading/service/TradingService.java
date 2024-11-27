@@ -1,6 +1,6 @@
 package com.ilyo.openai.trading.service;
 
-import static com.ilyo.openai.automation.GoogleNewsExtractionService.GOOGLE_SPECIFIC_NEWS_URL;
+import static com.ilyo.openai.automation.GoogleNewsExtractionService.GOOGLE_CRYPTO_NEWS_URL;
 import static com.ilyo.openai.automation.GoogleNewsExtractionService.GOOGLE_NEWS_URL;
 import static com.ilyo.openai.core.utils.OpenAIUtils.AI_PROMPT_CRYPTO_TRADING_USER;
 
@@ -63,7 +63,7 @@ public class TradingService {
   }
 
   private List<String> getGoogleNews(final CoinToken token) {
-    final var cryptoNews = googleNewsExtractionService.extractGoogleNews(GOOGLE_SPECIFIC_NEWS_URL.formatted(token.getFullName()), 1);
+    final var cryptoNews = googleNewsExtractionService.extractGoogleNews(GOOGLE_CRYPTO_NEWS_URL.formatted(token.getFullName()), 1);
     //final var economyNews = googleNewsExtractionService.extractGoogleNews(GOOGLE_NEWS_URL.formatted("economy"), 1);
     final var marketNews = googleNewsExtractionService.extractGoogleNews(GOOGLE_NEWS_URL.formatted("crypto market"), 1);
 
